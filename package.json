@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "d3-axis": "^1.0.12"
   },
   "devDependencies": {},
