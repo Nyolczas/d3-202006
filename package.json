@@ -1,0 +1,24 @@
+{
+  "name": "d3-202006",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "d3-axis": "^1.0.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nyolczas/d3-202006.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nyolczas/d3-202006/issues"
+  },
+  "homepage": "https://github.com/Nyolczas/d3-202006#readme"
+}

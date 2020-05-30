@@ -1,0 +1,25 @@
+#chart {
+    width: 800px;
+    height: 400px;
+    background-color: #f7f7f7;
+    margin: 25px auto;
+}
+
+/* https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering */
+.x-axis path .x-axis line {
+    shape-rendering: crispEdges;
+}
+
+.domain {
+    color: rgb(199, 199, 199);
+}
+
+.tick line {
+    display: none;
+}
+
+.tick text {
+    font-family: sans-serif;
+    font-weight: bold;
+    color: rgb(48, 48, 48);
+}
