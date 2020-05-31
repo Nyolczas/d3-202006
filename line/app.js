@@ -24,6 +24,10 @@ for (var i = 0; i < Math.round(Math.random() * 60) + 1; i++) {
     }
 }
 
+// TODO: Html-ben belerakni a chart_header-t és a chart_footer-t
+// TODO: async funtion-ban lekérdezni a wrapper szélességét és beállítani a maradék terület magasságát a képarányhoz
+// TODO: majd ez alapján felépíteni a chartot
+// TODO: grid megépítése: https://stackoverflow.com/questions/40766379/d3-adding-grid-to-simple-line-chart
 
 const time_parse = d3.timeParse('%m/%d/%Y');
 const time_format = d3.timeFormat('%b, %e'); //https://github.com/d3/d3-time-format 
@@ -36,6 +40,7 @@ const xAxis_height = 19;
 const oneCharacterWidth = 5;
 const yAxisCaracterConut = (d3.max(series, d => d.val).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")).length;
 const yAxis_width = 10 + oneCharacterWidth * yAxisCaracterConut;
+
 const plot_yPadding = 8;
 const plot_xPadding = 15;
 
@@ -61,13 +66,13 @@ const y_scale = d3.scaleLinear()
         chart_height - xAxis_height - plot_yPadding, plot_yPadding
     ]);
 
-// append the svg object to the body of the page
+// create svg
 const svg = d3.select('#chart1')
     .append('svg')
     .attr('width', chart_width)
     .attr('height', chart_height);
 
-// Add X axis --> it is a date format
+// Add axis 
 const x_axis = d3.axisBottom(x_scale)
     //.attr('width', x_scale)
     .ticks(4)
@@ -83,7 +88,7 @@ svg.append('g')
     .attr('transform', `translate(${yAxis_width}, 0)`)
     .call(y_axis);
 
-//Create Line Chart
+// Draw Line 
 const line = d3.line()
     .x(d => x_scale(d.date))
     .y(d => y_scale(d.val));
