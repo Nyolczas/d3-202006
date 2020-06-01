@@ -28,6 +28,10 @@ for (var i = 0; i < Math.round(Math.random() * 60) + 1; i++) {
 // TODO: async funtion-ban lekérdezni a wrapper szélességét és beállítani a maradék terület magasságát a képarányhoz
 // TODO: majd ez alapján felépíteni a chartot
 // TODO: grid megépítése: https://stackoverflow.com/questions/40766379/d3-adding-grid-to-simple-line-chart
+// vagy http://datawanderings.com/2019/04/19/creating-fun-shapes-in-d3-js/
+// vagy http://jsfiddle.net/Ny2FJ/4/
+// vagy https://stackoverflow.com/questions/19123788/draw-a-grid-or-rectangles-using-a-scale <<- ezen vannak jó linkek... TODO:
+
 
 const time_parse = d3.timeParse('%m/%d/%Y');
 const time_format = d3.timeFormat('%b, %e'); //https://github.com/d3/d3-time-format 

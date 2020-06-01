@@ -1,0 +1,78 @@
+<html>
+
+<head>
+
+    <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+    <!--<script src="d3.min.js" ></script>-->
+
+</head>
+
+<body>
+    <div id="grid"></div>
+</body>
+<script>
+    function gridData() {
+        var data = new Array();
+        var xpos = 1; //starting xpos and ypos at 1 so the stroke will show when we make the grid below
+        var ypos = 1;
+
+        for (var cell = 0; cell < 10 * 10; cell++) {
+            data.push({
+                id: cell,
+                color: '#' + Math.floor(Math.random() * 16777215).toString(16)
+            });
+        }
+        return data;
+    }
+
+    var width = 50;
+    var height = 50;
+
+
+    var gridData = gridData();
+
+    var grid = d3.select("#grid")
+        .append("svg")
+        .attr("width", "510px")
+        .attr("height", "510px");
+
+
+    function update() {
+
+        for (var i = 0; i < gridData.length; i++) {
+            var cell = gridData[i];
+            cell.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+        }
+
+        var cell = grid.selectAll(".cell")
+            .data(gridData)
+
+        cell.enter().append("rect")
+            .attr("class", "cell")
+            .attr("x", function (d) {
+                return d.id % 10 * width;
+            })
+            .attr("y", function (d) {
+                return Math.floor(d.id / 10) * height;
+            })
+            .attr("width", width)
+            .attr("height", height)
+            .style("fill", function (d) {
+                return d.color;
+            })
+            .style("stroke", "#222");
+
+        cell.transition()
+            .duration(1500)
+            .delay(1500)
+            .style('fill',
+                function (d) {
+                    return d.color;
+                });
+
+    }
+
+    setInterval(update, 2500);
+</script>
+
+</html>
