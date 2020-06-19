@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie</title>
+
+    <style>
+        svg {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script>
+        let data = [22, 10, 50, 25, 88, 33, 7];
+        const width = 500;
+        const height = 500;
+        const padding = 5;
+        const cornerRadius = 8;
+        const strokeWidth = 0;
+        const padAngle = 0.03;
+        let r = d3.min([width, height]) / 2 - padding;
+        let thickness = r * 0.382; // min: 0.001, max: 1 default: 0.382
+
+        let color = d3.scaleLinear()
+            .domain([0, data.length / 2, data.length])
+            .range(['crimson', 'gold', 'forestGreen'])
+            .interpolate(d3.interpolateRgb); //interpolateHsl interpolateHcl interpolateRgb
+
+        const canvas = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        let group = canvas.append("g")
+            .attr("transform", `translate(${width * 0.5}, ${r + padding})`);
+
+        let arc = d3.arc()
+            .innerRadius(r - thickness)
+            .outerRadius(r)
+            .cornerRadius(cornerRadius);
+
+        let pie = d3.pie()
+            .padAngle(padAngle)
+            .value(function (d) {
+                return d;
+            }).sort(null);
+
+        let arcs = group.selectAll(".arc")
+            .data(pie(data))
+            .enter()
+            .append("g")
+            .attr("class", "arc");
+
+        arcs.append("path")
+            .attr("d", arc)
+            .attr("stroke", "white")
+            .attr("stroke-width", strokeWidth)
+            .attr("fill", function (d) {
+                //console.log(d);
+                return color(d.index);
+            });
+    </script>
+</body>
+
+</html>
