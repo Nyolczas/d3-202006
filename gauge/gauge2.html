@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <style>
+        body {
+            margin: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        svg {
+            /*       width: 100%;
+      height: 100%; */
+        }
+
+        .half-donut .label {
+            font-size: 6rem;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // Data
+        var value = 0.8
+        var text = Math.round(value * 100) + '%'
+        var data = [value, 1 - value]
+
+        // Settings
+        var width = 600
+        var height = 300
+        var anglesRange = 0.5 * Math.PI
+        var radis = Math.min(width, 2 * height) / 2
+        var thickness = 100
+        // Utility 
+        //     var colors = d3.scale.category10();
+        var colors = ["#5EBBF8", "#F5F5F5"]
+
+        var pies = d3.layout.pie()
+            .value(d => d)
+            .sort(null)
+            .startAngle(anglesRange * -1)
+            .endAngle(anglesRange)
+
+        var arc = d3.svg.arc()
+            .outerRadius(radis)
+            .innerRadius(radis - thickness)
+
+        var translation = (x, y) => `translate(${x}, ${y})`
+
+        // Feel free to change or delete any of the code you see in this editor!
+        var svg = d3.select("body").append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("class", "half-donut")
+            .append("g")
+            .attr("transform", translation(width / 2, height))
+
+
+        svg.selectAll("path")
+            .data(pies(data))
+            .enter()
+            .append("path")
+            .attr("fill", (d, i) => colors[i])
+            .attr("d", arc)
+
+        svg.append("text")
+            .text(d => text)
+            .attr("dy", "-3rem")
+            .attr("class", "label")
+            .attr("text-anchor", "middle")
+    </script>
+</body>
