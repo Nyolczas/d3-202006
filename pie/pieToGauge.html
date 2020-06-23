@@ -47,9 +47,10 @@
 
         let pie = d3.pie()
             .padAngle(padAngle)
-            .value(function (d) {
-                return d;
-            }).sort(null);
+            .value(d => d)
+            .sort(null)
+            .startAngle(-1.54)
+            .endAngle(1.54);
 
         let arcs = group.selectAll(".arc")
             .data(pie(data))
