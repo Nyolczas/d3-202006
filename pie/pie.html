@@ -8,7 +8,7 @@
 
     <style>
         svg {
-            border: 1px solid gray;
+            /* border: 1px solid gray; */
         }
     </style>
 </head>
@@ -18,18 +18,18 @@
     <script src="https://d3js.org/d3-color.v1.min.js"></script>
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
     <script>
-        let data = [22, 10, 50, 25, 88, 33, 7];
+        let data = [22, 10, 50];
         const width = 500;
         const height = 500;
         const padding = 5;
-        const cornerRadius = 8;
+        const cornerRadius = 0;
         const strokeWidth = 0;
-        const padAngle = 0.02;
+        const padAngle = 0.00;
         let r = d3.min([width, height]) / 2 - padding;
         let thickness = r * 0.382; // min: 0.001, max: 1 default: 0.382
 
         let color = d3.scaleLinear()
-            .domain([0, data.length / 2, data.length])
+            .domain([0, 1.5, 3])
             .range(['crimson', 'gold', 'forestGreen'])
             .interpolate(d3.interpolateRgb); //interpolateHsl interpolateHcl interpolateRgb
 
